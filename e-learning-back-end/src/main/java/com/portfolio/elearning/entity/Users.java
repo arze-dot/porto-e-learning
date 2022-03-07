@@ -1,14 +1,10 @@
 package com.portfolio.elearning.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.sql.Timestamp;
 
@@ -23,16 +19,19 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     private int id;
-    @NotBlank
+    @NotNull
     @Pattern(regexp = "^(?=.*[a-z])(?=.*\\d)[a-z\\d]{8,}$")
     private String username;
-    @NotBlank
+    @NotNull
     private String password;
-    @NotBlank
+    @NotNull
+    @Pattern(regexp = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")
+    private String email;
+    @NotNull
     private String roleId;
     private boolean deleted;
 
-    @NotBlank
+    @NotNull
     private String status;
     @CreationTimestamp
     private Timestamp createdDate;
